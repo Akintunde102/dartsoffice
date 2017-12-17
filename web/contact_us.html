@@ -1,0 +1,192 @@
+<?php  include('app/detect.php'); ?>
+<?php  include($browser_t.'/inc/head.html'); ?>
+<?php require($browser_t.'/includes/config.php');  
+$page = 'contact';
+$message_title = 'Contact me';
+$message_2 = '- Contact me<br/>- <i class="fa fa-smile-o"></i>Waiting to hear from you';
+$message = 'Send a message to us and We\'ll get it instantly'; 
+
+//For Mail
+	if (isset($_POST["submit"]) && empty($_POST["url"])) {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$msg = $_POST['message'];
+		$from = $email ; 
+		$to = 'enquiries@consults.com'; 
+		$subject = 'Website Message';
+		
+		$body ="From: $name\n E-Mail: $email\n Message: $msg";
+
+		// Check if name has been entered
+		if (!$_POST['name']) {
+			$errName = 'Please enter your name';
+		}
+		
+		// Check if email has been entered and is valid
+		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$errEmail = 'Please enter a valid email address';
+		}
+		
+		//Check if message has been entered
+		if (!$_POST['message']) {
+			$errMessage = 'Please enter your message';
+		}
+
+// If there are no errors, send the email
+if (!@$errName && !@$errEmail && !@$errMessage && !@$errHuman) {
+	if (mail ($to, $subject, $body, $from)) {
+		$result='<div class="alert alert-success" style="font-size: 14px;">Your message has been sent</div>';
+	} else {
+		$result='<div class="alert alert-danger" style="font-size: 14px;">Sorry there was an error sending your message. Please try again later.</div>';
+	}
+}
+	}
+
+
+?>
+		
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- SIDEBAR -->
+  	<?php  include($browser_t.'/inc/sidebar.html'); ?>
+		<div class="slider-area2" id="top">
+     
+        <!-- MAIN CONTENT -->
+        <div class="main-content"  id="content-anchor">
+            <div class="fluid-container">
+                <div class="content-wrapper2">
+				<div class="whole">
+        <div class="contact-head">
+         <div class="tin-container" style="padding-top: 200px;">
+		 <div style="background-color: #000;" >
+                    <div id="ctl00_ctl00_cphMain_Header_pnlCoordinates" class="pe">
+			
+                        <span class="coordinates">Feel Free to Contact or Email Us</span>
+                        
+                    
+		</div><h2 id="ctl00_ctl00_cphMain_Header_htmlH2">
+                        Contact Us<span></span>
+                     
+                    </h2>
+		</div>
+					</div>
+                </div>
+				</div>
+		<div class="page-content">
+		<div class="first col-md-7">
+
+				
+		<section id="banner" style="height: 750px">
+				<div class="row">
+			<div class="col-md-10">
+			</div><div class="col-md-10">
+			<span class="page-heading" style="margin: 0 10px ;"><?=$message?></span>
+			</div></div>
+			<div class="col-md-12">
+						<div class="col-sm-10">
+							<?php  if (!empty($result))echo $result; ?>	
+							</div>
+					<form class="form-horizontal" role="form" method="post" action="<?php echo $DOMAIN_A.'/contact_us.html' ?>">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" id="name" name="name" placeholder="First Name" value="<?php if (!empty($_POST['name'])) echo htmlspecialchars($_POST['name']); ?>">
+							<?php if (!empty($errName))echo "<p class='text-danger'>$errName</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php  if (!empty($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>">
+							<?php if (!empty($errEmail))echo "<p class='text-danger'>$errEmail</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<textarea class="form-control" rows="4" name="message"><?php  if (!empty($_POST['message']))echo htmlspecialchars($_POST['message']);?></textarea>
+							<?php if (!empty($errMessage))echo "<p class='text-danger'>$errMessage</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input id="submit" name="submit" type="submit" value="Send" class="col-md-12 btn btn btn-info btn-lg" style="background: green;">
+						</div>
+					</div>
+					  <p class="antispam" >Leave this empty: <input type="text" name="url" /></p>
+					<div class="form-group">
+						<div class="col-sm-12 col-sm-offset-2">
+						</div>
+					</div>
+				</form> 
+	</div>
+
+			</section>
+				
+
+
+
+
+
+</div>
+
+
+
+			</div>
+		
+	</div>
+
+
+
+
+				
+		
+
+	
+		
+		<div class="col-md-3 side-hold"  style="
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <i class="fa fa-bullhorn"></i>
+                  <h3 class="box-title">Our Offices</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                   <a href="#oh" >
+                  <div class="callout " style="background-color: green !important;color: white;">
+                  <h4 style="color: #ddd;">Operational Headquarters</h4>
+                    <p>16B, Drake Lee Street, Lagos , Nigeria
+					</p><p>	Phone: +234 805 969-9530
+</p>
+                  </div>
+                    <a href="#sn">
+                  <div class="callout " style="background-color: green !important;color: white;">
+                  <h4 style="color: #ddd;">Southwest Nigeria Regional Office</h4>
+                    <p>Plot 3, Block C, Crowded Close, Broda Road, Ibadan, Nigeria
+</p><p>Phone: +234 816 768-688
+</p>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+		
+		
+		</div>
+		
+		</div>
+
+
+	</div>
+
+            </div>
+        </div>
+        </div>
+		
+
+	<?php  include($browser_t.'/inc/foot.html'); ?>
+
+    </body>
+</html>

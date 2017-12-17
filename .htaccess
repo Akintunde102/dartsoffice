@@ -1,0 +1,9 @@
+RewriteEngine on
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+
+<IfModule mime_module>
+    AddType application/x-httpd-php .php .html
+</IfModule>
+
